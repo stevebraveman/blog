@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[-其它-颓废- n]]></title>
     <url>%2Fblog%2F2019%2F09%2F28%2F105%2F</url>
-    <content type="text"><![CDATA[你们可能不知道，只用暴力，打到前十，是什么概念。我们一般只会用三个字形容这种人：成功人。 我经常说一句话，当年陈刀仔他能用暴力打进集训队，我 $***​$，用暴力打到AK比赛，不是问题。 埋伏它一手，这个题不能正解。这个题不用正解，它死定了。 反手给一个搜索，闷声发大财。它评得有点慢，但是不用怕，它的数据卡不了我。 图论，最短路，很牛逼这个题。如果能把这个题数据范围缩小，这个题能直接枚举水过，可是缩不得。 评测机，评测机你连 $ n \le 5 $的数据都评不了吗？评测机你快点呐，评测机，别磨磨蹭蹭的。 dfs，交错了，应该手写栈的。 给评测机倒杯茶好吧，好吧，给评测机倒杯卡布奇诺。 给评测机倒一杯卡布奇诺，开始你的评测秀，A掉它。 $10\% \ \ \ \ n \le 100$，你能卡我？你能卡死我？你今天能用 $n \le 100$ 把 $***​$ 卡了，我当场，就把这个电脑屏幕吃掉！ Time Limit Exceed. Score: 5.]]></content>
+    <content type="text"><![CDATA[你们可能不知道，只用暴力，打到前十，是什么概念。我们一般只会用三个字形容这种人：成功人。 我经常说一句话，当年陈刀仔他能用暴力打进集训队，我 $***​$，用暴力打到AK比赛，不是问题。 埋伏它一手，这个题不能正解。这个题不用正解，它死定了。 反手写一个搜索，闷声发大财。它评得有点慢，但是不用怕，它的数据卡不了我。 图论，最短路，很牛逼这个题。如果能把这个题数据范围缩小，这个题能直接枚举水过，可是缩不得。 评测机，评测机你连 $ n \le 5 $的数据都评不了吗？评测机你快点呐，评测机，别磨磨蹭蹭的。 dfs，交错了，应该手写栈的。 给评测机倒杯茶好吧，好吧，给评测机倒杯卡布奇诺。 给评测机倒一杯卡布奇诺，开始你的评测秀，A掉它。 $10\% \ \ \ \ n \le 100$，你能卡我？你能卡死我？你今天能用 $n \le 100$ 把 $***​$ 卡了，我当场，就把这个电脑屏幕吃掉！ Time Limit Exceed. Score: 5.]]></content>
       <tags>
         <tag>其它</tag>
         <tag>颓废</tag>
@@ -43,9 +43,9 @@
     <url>%2Fblog%2F2019%2F09%2F16%2F101%2F</url>
     <content type="text"><![CDATA[题目描述Link Solution题目要求中说尽可能让编号小的优先，还要满足做菜顺序，于是我们可以将队列换成优先队列，然后再反向建图跑拓扑就行了，最后倒序输出。 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556#include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;algorithm&gt;#include &lt;queue&gt;#define MAXN 100101struct Edge &#123; int v, nx;&#125;e[MAXN &lt;&lt; 1];int head[MAXN], ecnt, n, T, m, x, y, ent[MAXN], st[MAXN], top, fl;void add(int f, int t) &#123; e[++ecnt] = (Edge) &#123;t, head[f]&#125;; head[f] = ecnt;&#125;int main() &#123; scanf("%d", &amp;T); while (T--) &#123; memset(head, 0, sizeof(head)); memset(ent, 0, sizeof(ecnt)); memset(ent, 0, sizeof(ent)); ecnt = 0; top = 0; scanf("%d%d", &amp;n, &amp;m); for (int i = 1; i &lt;= m; i++) &#123; scanf("%d%d", &amp;x, &amp;y); add(y, x); ent[x]++; &#125; std::priority_queue &lt;int&gt; q; for (int i = 1; i &lt;= n; i++) &#123; if (!ent[i]) q.push(i); &#125; while (!q.empty()) &#123; int u = q.top(); st[++top] = u; q.pop(); for (int i = head[u]; i; i = e[i].nx) &#123; int to = e[i].v; ent[to]--; if (!ent[to]) q.push(to); &#125; &#125; fl = 0; for (int i = 1; i &lt;= n; i++) &#123; if (ent[i] &gt;= 1) fl = 1; &#125; if (fl) &#123; puts("Impossible!"); continue; &#125; for (int i = top; i &gt;= 1; i--) &#123; printf("%d ", st[i]); &#125; puts(""); &#125;&#125;]]></content>
       <tags>
-        <tag>LOJ</tag>
         <tag>图论</tag>
         <tag>拓扑排序</tag>
+        <tag>LOJ</tag>
       </tags>
   </entry>
   <entry>
@@ -94,8 +94,8 @@
     <content type="text"><![CDATA[莫比乌斯反演是一种非常实用而且装逼的算法，它以容斥为基础，来解决一些复杂的数学问题。 先给出莫比乌斯反演的公式： 设定义在自然数集合中的两个函数 $F(x)$ 和 $f(x)$，若这两个函数满足条件： F(n)=\sum_{d|n}f(d)那么则会有： $f(n)=\sum_{d|n}\mu(d)F(\frac{n}{d})$ 其中 $\mu$ 为莫比乌斯函数，可以在我的这篇文章中了解关于莫比乌斯函数的知识。 下面我们来证明这个公式。 首先需要了解狄利克雷卷积的一些性质（注：以下出现的函数都是定义在自然数集合上的）： 设 $*$ 为狄利克雷卷积。 若有两个函数 $f$ 和 $g$，且 $f=g$，那么就有：$f * h=g * h$，其中，$h​$ 为另一个函数。 对于三个函数 $f​$、$g​$、$h​$，则会有 $f * (g * h) = (f * g) * h​$。 以上就是需要了解的知识。 $\because F(n)=\sum_{d|n}f(d)​$ $\therefore F=f*I$（$I$ 为不变函数，此函数的值恒为 $1$） $\therefore F * \mu = f * I * \mu$ $\because I * \mu = \epsilon​$（$\epsilon​$ 为原函数，$\epsilon(n) = [n = 1]​$） $\therefore F * \mu = f * \epsilon$ 又 $\because f * \epsilon = f$ $\therefore F*\mu=f​$ $\therefore f(n)=\sum_{d|n}\mu(d) F(\frac{n}{d})$ Q.E.D 对于一些莫比乌斯反演的题，千万别忘了一个重要的东西： \mu * I=\epsilon这个等式在推柿子中很有用，所以一定要记住。我就是因为忘了这个所以有好长一段时间不理解大多数式子是怎么推出来的 举个例子： 求： \sum_{i=1}^n \sum_{j=1}^m [\gcd(i,j)=1]​那么这个柿子就可以这么推： \begin{align}\sum_{i=1}^n \sum_{j=1}^m [\gcd(i,j)=1] &= \sum_{i=1}^n \sum_{j=1}^m \epsilon(\gcd(i,j)) \\\\ &= \sum_{i=1}^n \sum_{j=1}^m \mu*I \\\\ &= \sum_{i=1}^n \sum_{j=1}^m \sum_{d|\gcd(i,j)}\mu(d) \\\\ &= \sum_{i=1}^n \sum_{j=1}^m \sum_{d|i} \sum_{d|j} \mu(d) \\\\\ &=\sum_{d=1}^n \mu(d) \sum_{i=1}^n \sum_{d|i} \sum_{j=1}^n \sum_{d|j} 1 \\\\ &= \sum_{d=1} \mu(d) \lfloor \frac{n}{d} \rfloor \lfloor \frac{m}{d} \rfloor \end{align}接下来是一些关于莫比乌斯反演的练习题： [SDOI2015]约数个数和 [POI2007]ZAP-Queries YY的GCD 如果有什么讲解错误，请在下面的评论中指出（毕竟百密一疏）]]></content>
       <tags>
         <tag>数论</tag>
-        <tag>算法讲解</tag>
         <tag>莫比乌斯反演</tag>
+        <tag>算法讲解</tag>
       </tags>
   </entry>
   <entry>
@@ -853,13 +853,12 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[-图论-最小生成树- [洛谷 P1546][USACO]最短网络]]></title>
-    <url>%2Fblog%2F2018%2F08%2F21%2F19%2F</url>
-    <content type="text"><![CDATA[题目背景农民约翰被选为他们镇的镇长！他其中一个竞选承诺就是在镇上建立起互联网，并连接到所有的农场。当然，他需要你的帮助。 题目描述约翰已经给他的农场安排了一条高速的网络线路，他想把这条线路共享给其他农场。为了用最小的消费，他想铺设最短的光纤去连接所有的农场。 你将得到一份各农场之间连接费用的列表，你必须找出能连接所有农场并所用光纤最短的方案。每两个农场间的距离不会超过 $100000$ 。 输入格式第一行： 农场的个数，$N（3&lt;=N&lt;=100）$。 第二行..结尾: 后来的行包含了一个$N \times N$的矩阵,表示每个农场之间的距离。理论上，他们是N行，每行由N个用空格分隔的数组成，实际上，他们限制在$80$个字符，因此，某些行会紧接着另一些行。当然，对角线将会是$0$，因为不会有线路从第 $i$ 个农场到它本身。 输出格式只有一个输出，其中包含连接到每个农场的光纤的最小长度。 输入样例40 4 9 214 0 8 179 8 0 1621 17 16 0 输出样例28 Solution这道题就是个最小生成树的模板题，但如果你用Kruskal，需要注意两点 1.数组一定要开大 2.手写cmp函数时一定要注意是a.w&lt;b.w千万别带等号，不然会T。。。 Code1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859#include&lt;iostream&gt;#include&lt;algorithm&gt;#include&lt;cstring&gt;#include&lt;cstdio&gt;using namespace std;typedef struct &#123; int u,v; int w;&#125; Edge;Edge e[2000002];int fa[2000002];bool cmp(const Edge &amp;a,const Edge &amp;b) &#123; if(a.w&lt;b.w) return true; else return false;&#125;int find(int n) &#123; if(fa[n]==0) return n; else return find(fa[n]);&#125;int uion(int r1,int r2) &#123; r1=find(r1); r2=find(r2); if(r1==r2) return 0; if(r1&lt;r2) fa[r2]=r1; else fa[r1]=r2; return 1;&#125;int main() &#123; int n,p; int sum,count; cin&gt;&gt;n; int k=1; for(int i=1; i&lt;=n; i++) &#123; for(int j=1; j&lt;=n; j++) &#123; int x; scanf("%d",&amp;x); if(j&gt;i) &#123; e[k].w=x; e[k].u=i; e[k].v=j; k++; &#125; &#125; &#125; k--; sort(e+1,e+1+k,cmp); memset(fa,0,sizeof(fa)); sum=0; count=1; for(int i=1; i&lt;=k; i++) &#123; if(uion(e[i].u,e[i].v)) &#123; sum+=e[i].w; count++; &#125; if(count==n) break; &#125; printf("%d",sum); return 0;&#125;]]></content>
+    <title><![CDATA[-DP- [洛谷 P1091][NOIp 2004]合唱队形]]></title>
+    <url>%2Fblog%2F2018%2F08%2F21%2F18%2F</url>
+    <content type="text"><![CDATA[题目描述$N$ 位同学站成一排，音乐老师要请其中的( $N−K$ )位同学出列，使得剩下的 $K$ 位同学排成合唱队形。合唱队形是指这样的一种队形：设K位同学从左到右依次编号为 $1,2,…,K$ ，他们的身高分别为 $T1,T_2,…,T_K$ ， 则他们的身高满足 $T_1&lt;…T{i+1}&gt;…&gt;T_K(1 \le i \le K)$ 。你的任务是，已知所有$N$位同学的身高，计算最少需要几位同学出列，可以使得剩下的同学排成合唱队形。 输入格式共二行。第一行是一个整数 $N(2 \le N \le 100)$ ，表示同学的总数。第二行有 $n$ 个整数，用空格分隔，第 $i$ 个整数 $T_i(130 \le T_i \le 230)$ 是第 $i$ 位同学的身高（厘米）。 输出格式一个整数，最少需要几位同学出列。 输入样例8186 186 150 200 160 130 197 220 输出样例4 Solution思路：首先分析一下题目，题目的意思是找出几个人排成一个先单调递增后单调递减的队伍； 所以我们可以这样求：先枚举到第 $i$ 个人然后求出第 $i$ 个人前的最长上升子序列，再求出第 $i$ 个人后最长下降子序列。 注：需要特判一下当出现只单调递增或只单调递减的情况。 Code1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465#include &lt;iostream&gt;#include &lt;cstring&gt;using namespace std;int max(int a,int b) &#123; return (a&gt;=b)?a:b;&#125;int main() &#123; int a[105],ans=0; int n; cin&gt;&gt;n; for(int i=0; i&lt;n; i++) &#123; cin&gt;&gt;a[i]; &#125; bool flag=1; for(int i=0; i&lt;n; i++) &#123; if(a[i]&lt;=a[i-1]) &#123; flag=0; &#125; &#125; if(flag)&#123; cout&lt;&lt;'0'&lt;&lt;endl; return 0; &#125; for(int i=0;i&lt;n;i++)&#123; if(a[i]&gt;=a[i-1]) &#123; flag=0; &#125; &#125; if(flag)&#123; cout&lt;&lt;'0'&lt;&lt;endl; return 0; &#125; int b[105],c[105]; int maxn=0; for(int k=0; k&lt;n; k++) &#123; memset(b,0,sizeof(b)); memset(c,0,sizeof(c)); c[0]=1; b[0]=1; for (int i=1; i&lt;k; i++) &#123; b[i] = 1; for (int j=0; j&lt;i; j++) &#123; if (a[i]&gt;a[j]&amp;&amp;b[j]+1&gt;b[i]) b[i]=b[j]+1; &#125; &#125; for (int i=k+1; i&lt;n; i++) &#123; c[i] = 1; for (int j=k; j&lt;i; j++) &#123; if (a[i]&lt;a[j]&amp;&amp;c[j]+1&gt;c[i]) c[i]=c[j]+1; &#125; &#125; int maxb=0,maxc=0; for (int i=0; i&lt;k; i++) &#123; maxb=max(b[i],maxb); &#125; for (int i=k; i&lt;n; i++) &#123; maxc=max(c[i],maxc); &#125; maxn=max(maxn,maxb+maxc); &#125; cout&lt;&lt;n-maxn&lt;&lt;endl; return 0;&#125;]]></content>
       <tags>
         <tag>洛谷</tag>
-        <tag>图论</tag>
-        <tag>最小生成树</tag>
+        <tag>DP</tag>
       </tags>
   </entry>
   <entry>
@@ -872,12 +871,13 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[-DP- [洛谷 P1091][NOIp 2004]合唱队形]]></title>
-    <url>%2Fblog%2F2018%2F08%2F21%2F18%2F</url>
-    <content type="text"><![CDATA[题目描述$N$ 位同学站成一排，音乐老师要请其中的( $N−K$ )位同学出列，使得剩下的 $K$ 位同学排成合唱队形。合唱队形是指这样的一种队形：设K位同学从左到右依次编号为 $1,2,…,K$ ，他们的身高分别为 $T1,T_2,…,T_K$ ， 则他们的身高满足 $T_1&lt;…T{i+1}&gt;…&gt;T_K(1 \le i \le K)$ 。你的任务是，已知所有$N$位同学的身高，计算最少需要几位同学出列，可以使得剩下的同学排成合唱队形。 输入格式共二行。第一行是一个整数 $N(2 \le N \le 100)$ ，表示同学的总数。第二行有 $n$ 个整数，用空格分隔，第 $i$ 个整数 $T_i(130 \le T_i \le 230)$ 是第 $i$ 位同学的身高（厘米）。 输出格式一个整数，最少需要几位同学出列。 输入样例8186 186 150 200 160 130 197 220 输出样例4 Solution思路：首先分析一下题目，题目的意思是找出几个人排成一个先单调递增后单调递减的队伍； 所以我们可以这样求：先枚举到第 $i$ 个人然后求出第 $i$ 个人前的最长上升子序列，再求出第 $i$ 个人后最长下降子序列。 注：需要特判一下当出现只单调递增或只单调递减的情况。 Code1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465#include &lt;iostream&gt;#include &lt;cstring&gt;using namespace std;int max(int a,int b) &#123; return (a&gt;=b)?a:b;&#125;int main() &#123; int a[105],ans=0; int n; cin&gt;&gt;n; for(int i=0; i&lt;n; i++) &#123; cin&gt;&gt;a[i]; &#125; bool flag=1; for(int i=0; i&lt;n; i++) &#123; if(a[i]&lt;=a[i-1]) &#123; flag=0; &#125; &#125; if(flag)&#123; cout&lt;&lt;'0'&lt;&lt;endl; return 0; &#125; for(int i=0;i&lt;n;i++)&#123; if(a[i]&gt;=a[i-1]) &#123; flag=0; &#125; &#125; if(flag)&#123; cout&lt;&lt;'0'&lt;&lt;endl; return 0; &#125; int b[105],c[105]; int maxn=0; for(int k=0; k&lt;n; k++) &#123; memset(b,0,sizeof(b)); memset(c,0,sizeof(c)); c[0]=1; b[0]=1; for (int i=1; i&lt;k; i++) &#123; b[i] = 1; for (int j=0; j&lt;i; j++) &#123; if (a[i]&gt;a[j]&amp;&amp;b[j]+1&gt;b[i]) b[i]=b[j]+1; &#125; &#125; for (int i=k+1; i&lt;n; i++) &#123; c[i] = 1; for (int j=k; j&lt;i; j++) &#123; if (a[i]&lt;a[j]&amp;&amp;c[j]+1&gt;c[i]) c[i]=c[j]+1; &#125; &#125; int maxb=0,maxc=0; for (int i=0; i&lt;k; i++) &#123; maxb=max(b[i],maxb); &#125; for (int i=k; i&lt;n; i++) &#123; maxc=max(c[i],maxc); &#125; maxn=max(maxn,maxb+maxc); &#125; cout&lt;&lt;n-maxn&lt;&lt;endl; return 0;&#125;]]></content>
+    <title><![CDATA[-图论-最小生成树- [洛谷 P1546][USACO]最短网络]]></title>
+    <url>%2Fblog%2F2018%2F08%2F21%2F19%2F</url>
+    <content type="text"><![CDATA[题目背景农民约翰被选为他们镇的镇长！他其中一个竞选承诺就是在镇上建立起互联网，并连接到所有的农场。当然，他需要你的帮助。 题目描述约翰已经给他的农场安排了一条高速的网络线路，他想把这条线路共享给其他农场。为了用最小的消费，他想铺设最短的光纤去连接所有的农场。 你将得到一份各农场之间连接费用的列表，你必须找出能连接所有农场并所用光纤最短的方案。每两个农场间的距离不会超过 $100000$ 。 输入格式第一行： 农场的个数，$N（3&lt;=N&lt;=100）$。 第二行..结尾: 后来的行包含了一个$N \times N$的矩阵,表示每个农场之间的距离。理论上，他们是N行，每行由N个用空格分隔的数组成，实际上，他们限制在$80$个字符，因此，某些行会紧接着另一些行。当然，对角线将会是$0$，因为不会有线路从第 $i$ 个农场到它本身。 输出格式只有一个输出，其中包含连接到每个农场的光纤的最小长度。 输入样例40 4 9 214 0 8 179 8 0 1621 17 16 0 输出样例28 Solution这道题就是个最小生成树的模板题，但如果你用Kruskal，需要注意两点 1.数组一定要开大 2.手写cmp函数时一定要注意是a.w&lt;b.w千万别带等号，不然会T。。。 Code1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859#include&lt;iostream&gt;#include&lt;algorithm&gt;#include&lt;cstring&gt;#include&lt;cstdio&gt;using namespace std;typedef struct &#123; int u,v; int w;&#125; Edge;Edge e[2000002];int fa[2000002];bool cmp(const Edge &amp;a,const Edge &amp;b) &#123; if(a.w&lt;b.w) return true; else return false;&#125;int find(int n) &#123; if(fa[n]==0) return n; else return find(fa[n]);&#125;int uion(int r1,int r2) &#123; r1=find(r1); r2=find(r2); if(r1==r2) return 0; if(r1&lt;r2) fa[r2]=r1; else fa[r1]=r2; return 1;&#125;int main() &#123; int n,p; int sum,count; cin&gt;&gt;n; int k=1; for(int i=1; i&lt;=n; i++) &#123; for(int j=1; j&lt;=n; j++) &#123; int x; scanf("%d",&amp;x); if(j&gt;i) &#123; e[k].w=x; e[k].u=i; e[k].v=j; k++; &#125; &#125; &#125; k--; sort(e+1,e+1+k,cmp); memset(fa,0,sizeof(fa)); sum=0; count=1; for(int i=1; i&lt;=k; i++) &#123; if(uion(e[i].u,e[i].v)) &#123; sum+=e[i].w; count++; &#125; if(count==n) break; &#125; printf("%d",sum); return 0;&#125;]]></content>
       <tags>
         <tag>洛谷</tag>
-        <tag>DP</tag>
+        <tag>图论</tag>
+        <tag>最小生成树</tag>
       </tags>
   </entry>
   <entry>
