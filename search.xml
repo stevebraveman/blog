@@ -53,8 +53,8 @@
     <url>%2Fblog%2F2019%2F09%2F08%2F100%2F</url>
     <content type="text"><![CDATA[题目描述Link Solution考虑使用换根法。 在每次换根的时候，有些节点的深度+1，而另外一些的节点深度就会-1。 所以，换根的方程为 f[to] = d[to] - size[to] - 1 +（f[u] - d[to] + 1 + (n - size[to]))，其中 d 为每个子树里的所有节点的深度之和，size 为子数大小。 简化一下：f[to] = f[u] - 2 * size[to] + n Code12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849#include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;algorithm&gt;#define int long long#define MAXN 1000010struct Edge &#123; int v, nx;&#125;e[MAXN &lt;&lt; 1];int head[MAXN], ecnt, n, m, x, y, dep[MAXN], f[MAXN], siz[MAXN], d[MAXN], ans, l;void add(int f, int t) &#123; e[++ecnt] = (Edge) &#123;t, head[f]&#125;; head[f] = ecnt;&#125;void dfs(int fa, int u, int dp) &#123; siz[u] = 1; dep[u] = dp; d[u] = dp; for (int i = head[u]; i; i = e[i].nx) &#123; int to = e[i].v; if (to == fa) continue; dfs(u, to, dp + 1); siz[u] += siz[to]; d[u] += dep[to]; &#125;&#125;void dfs2(int fa, int u) &#123; for (int i = head[u]; i; i = e[i].nx) &#123; int to = e[i].v; if (to == fa) continue; f[to] = d[to] - siz[to] - 1 + (f[u] - d[to] + 1 + (n - siz[to])); dfs2(u, to); &#125;&#125;signed main() &#123; scanf("%d", &amp;n); for (int i = 1; i &lt; n; i++) &#123; scanf("%d%d", &amp;x, &amp;y); add(x, y); add(y, x); &#125; dfs(0, 1, 1); f[1] = d[1]; dfs2(0, 1); for (int i = 1; i &lt;= n; i++) &#123; if (f[i] &gt; ans) ans = f[i], l = i; &#125; printf("%d", l);&#125;]]></content>
       <tags>
-        <tag>DP</tag>
         <tag>洛谷</tag>
+        <tag>DP</tag>
       </tags>
   </entry>
   <entry>
@@ -82,8 +82,8 @@
     <url>%2Fblog%2F2019%2F08%2F21%2F97%2F</url>
     <content type="text"><![CDATA[题目描述Link Solution先推一波柿子： \begin{align}\sum_{i_1=1}^m \sum_{i_2=1}^m \sum_{i_3=1}^m ...\sum_{i_n=1}^m \gcd(i_1,i_2,i_3,...,i_n) &= \sum_{d=1}^m \sum_{i_1=1}^m \sum_{i_2=1}^m \sum_{i_3=1}^m ...\sum_{i_n=1}^m [\gcd(i_1,i_2,i_3,...,i_n) = d]\\\\ &= \sum_{d=1}^m \sum_{i_1=1}^{\lfloor \frac{m}{d}\rfloor} \sum_{i_2=1}^{\lfloor \frac{m}{d}\rfloor} \sum_{i_3=1}^{\lfloor \frac{m}{d}\rfloor} ...\sum_{i_n=1}^{\lfloor \frac{m}{d}\rfloor} [\gcd(i_1,i_2,i_3,...,i_n) = 1] \\\\&= \sum_{d=1}^m d\sum_{i_1=1}^{\lfloor \frac{m}{d}\rfloor} \sum_{i_2=1}^{\lfloor \frac{m}{d}\rfloor} \sum_{i_3=1}^{\lfloor \frac{m}{d}\rfloor} ...\sum_{i_n=1}^{\lfloor \frac{m}{d}\rfloor} \sum_{t|i_1,t|i_2,t|i_3,...,t|i_n} \mu(t) \\\\ &= \sum_{d=1}^m \lfloor \frac{m}{T}\rfloor^n \sum_{d|T} d \mu(\frac{T}{d}) \\\\ &= \sum_{d=1}^m \lfloor \frac{m}{T}\rfloor^n \varphi(T) \end{align}​然而这道题的数据范围是 $10 \le n,m \le 10^{11}​$，所以单纯用整除分块是不够的，所以还需要用杜教筛。 Code12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061#include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;algorithm&gt;#include &lt;tr1/unordered_map&gt;#define MAXN 10000010#define ull unsigned long longusing namespace std;tr1::unordered_map &lt;ull, ull&gt; h;ull phi[MAXN], p[MAXN], tot, sum[MAXN], n, m, ans;bool chk[MAXN];ull qpow(ull a, ull b) &#123; ull res = 1LL; while (b) &#123; if (b &amp; 1) res = res * a; b &gt;&gt;= 1; a = a * a; &#125; return res;&#125;void seive(ull n) &#123; phi[1] = 1; for (int i = 2; i &lt;= n; i++) &#123; if (!chk[i]) &#123; p[++tot] = i; phi[i] = i - 1; &#125; for (int j = 1; j &lt;= tot &amp;&amp; i * p[j] &lt;= n; j++) &#123; chk[i * p[j]] = 1; if (i % p[j]) &#123; phi[i * p[j]] = phi[i] * phi[p[j]]; &#125; else &#123; phi[i * p[j]] = phi[i] * p[j]; break; &#125; &#125; &#125; for (int i = 1; i &lt;= n; i++) &#123; sum[i] = sum[i - 1] + phi[i]; &#125;&#125;ull djseive(ull n) &#123; if (n &lt;= 10000000) return sum[n]; if (h[n]) return h[n]; ull ans = (n &amp; 1) ? (n + 1) / 2 * n : n / 2 * (n + 1); for (ull l = 2, r; l &lt;= n; l = r + 1) &#123; r = n / (n / l); ans -= (r - l + 1LL) * djseive(n / l); &#125; return h[n] = ans;&#125;int main() &#123; scanf("%llu%llu", &amp;n, &amp;m); seive(10000000); for (ull l = 1, r; l &lt;= m; l = r + 1) &#123; r = m / (m / l); ans += (djseive(r) - djseive(l - 1)) * qpow(m / l, n); &#125; printf("%llu", ans);&#125;]]></content>
       <tags>
-        <tag>LOJ</tag>
         <tag>数论</tag>
+        <tag>LOJ</tag>
         <tag>杜教筛</tag>
         <tag>莫比乌斯反演</tag>
       </tags>
@@ -188,9 +188,9 @@
     <url>%2Fblog%2F2019%2F05%2F26%2F86%2F</url>
     <content type="text"><![CDATA[题目描述Link Solution并查集 + 拓扑排序 那么我们该怎样用并查集和拓扑排序呢 思路很简单，把标有=的i和j放在同一个并查集内，然后根据题意连边，如果是&gt;，就这么连：i所在集合的标号 -&gt; j所在集合的标号，如果是&gt;那么就相反。当然，你也可以和我的意思相反，就是在赋值上有些麻烦。 连完边后，直接跑拓扑就可以了，别忘了在拓扑排序的时候给点赋值 也别忘了判断一下有没有环，如果有环，那么就不存在。 Code123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118#include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;queue&gt;#define MAXN 2000100char mp[1010][1010];int n, m, head[MAXN], ecnt, x, y, ent[MAXN], out[MAXN], rank[MAXN], p, deli[MAXN], fa[MAXN], ans, tot;bool vis[MAXN], ifq[MAXN];std::queue &lt;int&gt; q;struct Edge &#123; int v, nx;&#125;e[MAXN];void add(int f, int t) &#123; e[++ecnt] = (Edge) &#123;t, head[f]&#125;; head[f] = ecnt;&#125;int find(int x) &#123; if (fa[x] == x) return x; else return fa[x] = find(fa[x]);&#125;void un(int x, int y) &#123; x = find(x); y = find(y); if (x == y) return; if (rank[x] &lt;= rank[y]) &#123; fa[x] = y; if (rank[x] == rank[y]) &#123; rank[x]++; &#125; &#125; else &#123; fa[y] = x; &#125; return;&#125;int main() &#123; scanf("%d%d", &amp;n, &amp;m); for (int i = 1; i &lt;= n; i++) &#123; scanf("%s", mp[i] + 1); &#125; for (int i = 1; i &lt;= n + m; i++) &#123; fa[i] = i; rank[i] = 1; &#125; for (int i = 1; i &lt;= n; i++) &#123; for (int j = 1; j &lt;= m; j++) &#123; if (mp[i][j] == '=') &#123; un(i, j + n); &#125; &#125; &#125; for (int i = 1; i &lt;= n; i++) &#123; for (int j = 1; j &lt;= m; j++) &#123; x = find(j + n); y = find(i); if (mp[i][j] == '&gt;') &#123; add(x, y); ent[y]++; &#125; if (mp[i][j] == '&lt;') &#123; add(y, x); ent[x]++; &#125; &#125; &#125; tot = n + m; for (int i = 1; i &lt;= n + m; i++) &#123; p = find(i); if (!ent[p] &amp;&amp; !ifq[p]) &#123; q.push(p); ifq[p] = 1; deli[p] = 1; deli[i] = 1; &#125; &#125; ans = 0; while (!q.empty()) &#123; int u = q.front(); q.pop(); vis[u] = 1; for (int i = head[u]; i; i = e[i].nx) &#123; int to = e[i].v; if (vis[to]) continue; ent[to]--; if (!ent[to]) &#123; deli[to] = deli[u] + 1; q.push(to); &#125; &#125; &#125; memset(vis, 0, sizeof(vis)); for (int i = 1; i &lt;= n + m; i++) &#123; if (!ent[find(i)]) ans++; &#125; // for (int i = 1; i &lt;= n + m; i++) &#123; // printf("%d ", ent[find(i)]); // &#125; // puts(""); if (tot != ans) &#123; // printf("%d %d\n", tot, ans); puts("No"); return 0; &#125; puts("Yes"); for (int i = 1; i &lt;= n + m; i++) &#123; int p = find(i); deli[i] = deli[p]; &#125; for (int i = 1; i &lt;= n; i++) &#123; printf("%d ", deli[i]); &#125; puts(""); for (int i = n + 1; i &lt;= n + m; i++) &#123; printf("%d ", deli[i]); &#125; return 0;&#125;]]></content>
       <tags>
+        <tag>Codeforces</tag>
         <tag>图论</tag>
         <tag>拓扑排序</tag>
-        <tag>Codeforces</tag>
       </tags>
   </entry>
   <entry>
@@ -254,9 +254,9 @@
       <tags>
         <tag>洛谷</tag>
         <tag>二分图</tag>
-        <tag>强连通分量</tag>
         <tag>网络流</tag>
         <tag>最大流</tag>
+        <tag>强连通分量</tag>
       </tags>
   </entry>
   <entry>
@@ -325,8 +325,8 @@
     <url>%2Fblog%2F2019%2F04%2F02%2F73%2F</url>
     <content type="text"><![CDATA[题目描述Link Solution这道题的做法就是先按照a的大小排序，然后将此题转换为LIS问题，得用 $O(n \log n)​$ 的算法 Code1234567891011121314151617181920212223242526272829303132333435363738394041424344#include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;algorithm&gt;#define MAXN 100010struct num &#123; int a, b, id;&#125;a[MAXN];int n, d[MAXN], g[MAXN], top, k[MAXN], len;bool cmp(num a, num b) &#123; return a.b &gt; b.b || ((a.b == b.b) &amp;&amp; a.a &lt; b.a);&#125;int main() &#123; scanf("%d", &amp;n); for (int i = 1; i &lt;= n; i++) &#123; scanf("%d", &amp;a[i].a); a[i].id = i; &#125; for (int i = 1; i &lt;= n; i++) &#123; scanf("%d", &amp;a[i].b); &#125; std::sort(a + 1, a + 1 + n, cmp); for (int i = 1; i &lt;= n; i++) &#123; if (a[i].a &gt;= d[top]) d[++top] = a[i].a, g[a[i].id] = top; else &#123; int j = std::upper_bound(d + 1, d + 1 + top, a[i].a) - d; d[j] = a[i].a; g[a[i].id] = j; &#125; &#125; printf("%d\n", top); len = top; for (int i = n; i &gt;= 1; i--) &#123; if (g[a[i].id] == len)&#123; k[len--] = a[i].id; &#125; if (len &lt; 1) &#123; break; &#125; &#125; for (int i = 1; i &lt;= top; i++) &#123; printf("%d ", k[i]); &#125;&#125;]]></content>
       <tags>
-        <tag>DP</tag>
         <tag>洛谷</tag>
+        <tag>DP</tag>
         <tag>贪心</tag>
       </tags>
   </entry>
@@ -863,21 +863,21 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[-DP- [洛谷 P1091][NOIp 2004]合唱队形]]></title>
-    <url>%2Fblog%2F2018%2F08%2F21%2F18%2F</url>
-    <content type="text"><![CDATA[题目描述$N$ 位同学站成一排，音乐老师要请其中的( $N−K$ )位同学出列，使得剩下的 $K$ 位同学排成合唱队形。合唱队形是指这样的一种队形：设K位同学从左到右依次编号为 $1,2,…,K$ ，他们的身高分别为 $T1,T_2,…,T_K$ ， 则他们的身高满足 $T_1&lt;…T{i+1}&gt;…&gt;T_K(1 \le i \le K)$ 。你的任务是，已知所有$N$位同学的身高，计算最少需要几位同学出列，可以使得剩下的同学排成合唱队形。 输入格式共二行。第一行是一个整数 $N(2 \le N \le 100)$ ，表示同学的总数。第二行有 $n$ 个整数，用空格分隔，第 $i$ 个整数 $T_i(130 \le T_i \le 230)$ 是第 $i$ 位同学的身高（厘米）。 输出格式一个整数，最少需要几位同学出列。 输入样例8186 186 150 200 160 130 197 220 输出样例4 Solution思路：首先分析一下题目，题目的意思是找出几个人排成一个先单调递增后单调递减的队伍； 所以我们可以这样求：先枚举到第 $i$ 个人然后求出第 $i$ 个人前的最长上升子序列，再求出第 $i$ 个人后最长下降子序列。 注：需要特判一下当出现只单调递增或只单调递减的情况。 Code1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465#include &lt;iostream&gt;#include &lt;cstring&gt;using namespace std;int max(int a,int b) &#123; return (a&gt;=b)?a:b;&#125;int main() &#123; int a[105],ans=0; int n; cin&gt;&gt;n; for(int i=0; i&lt;n; i++) &#123; cin&gt;&gt;a[i]; &#125; bool flag=1; for(int i=0; i&lt;n; i++) &#123; if(a[i]&lt;=a[i-1]) &#123; flag=0; &#125; &#125; if(flag)&#123; cout&lt;&lt;'0'&lt;&lt;endl; return 0; &#125; for(int i=0;i&lt;n;i++)&#123; if(a[i]&gt;=a[i-1]) &#123; flag=0; &#125; &#125; if(flag)&#123; cout&lt;&lt;'0'&lt;&lt;endl; return 0; &#125; int b[105],c[105]; int maxn=0; for(int k=0; k&lt;n; k++) &#123; memset(b,0,sizeof(b)); memset(c,0,sizeof(c)); c[0]=1; b[0]=1; for (int i=1; i&lt;k; i++) &#123; b[i] = 1; for (int j=0; j&lt;i; j++) &#123; if (a[i]&gt;a[j]&amp;&amp;b[j]+1&gt;b[i]) b[i]=b[j]+1; &#125; &#125; for (int i=k+1; i&lt;n; i++) &#123; c[i] = 1; for (int j=k; j&lt;i; j++) &#123; if (a[i]&lt;a[j]&amp;&amp;c[j]+1&gt;c[i]) c[i]=c[j]+1; &#125; &#125; int maxb=0,maxc=0; for (int i=0; i&lt;k; i++) &#123; maxb=max(b[i],maxb); &#125; for (int i=k; i&lt;n; i++) &#123; maxc=max(c[i],maxc); &#125; maxn=max(maxn,maxb+maxc); &#125; cout&lt;&lt;n-maxn&lt;&lt;endl; return 0;&#125;]]></content>
-      <tags>
-        <tag>DP</tag>
-        <tag>洛谷</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[-队列- [洛谷 P1540][NOIp 2010]机器翻译]]></title>
     <url>%2Fblog%2F2018%2F08%2F21%2F17%2F</url>
     <content type="text"><![CDATA[题目背景小晨的电脑上安装了一个机器翻译软件，他经常用这个软件来翻译英语文章。 题目描述这个翻译软件的原理很简单，它只是从头到尾，依次将每个英文单词用对应的中文含义来替换。对于每个英文单词，软件会先在内存中查找这个单词的中文含义，如果内存中有，软件就会用它进行翻译；如果内存中没有，软件就会在外存中的词典内查找，查出单词的中文含义然后翻译，并将这个单词和译义放入内存，以备后续的查找和翻译。假设内存中有 $M$ 个单元，每单元能存放一个单词和译义。每当软件将一个新单词存入内存前，如果当前内存中已存入的单词数不超过 $M-1$ ，软件会将新单词存入一个未使用的内存单元；若内存中已存入 $M$ 个单词，软件会清空最早进入内存的那个单词，腾出单元来，存放新单词。假设一篇英语文章的长度为 $N$ 个单词。给定这篇待译文章，翻译软件需要去外存查找多少次词典？假设在翻译开始前，内存中没有任何单词。 输入格式共 $2$ 行。每行中两个数之间用一个空格隔开。第一行为两个正整数 $M,N$ ，代表内存容量和文章的长度。第二行为 $N$ 个非负整数，按照文章的顺序，每个数（大小不超过 $1000$ ）代表一个英文单词。文章中两个单词是同一个单词，当且仅当它们对应的非负整数相同。 输出格式一个整数，为软件需要查词典的次数。 输入样例3 71 2 1 5 4 4 1 输出样例5 说明每个测试点 $1s$对于 $10%$ 的数据有 $M=1,N≤5$ 。对于 $100%$ 的数据有$ 0≤M≤100,0≤N≤10000$ 。整个查字典过程如下：每行表示一个单词的翻译，冒号前为本次翻译后的内存状况：空：内存初始状态为空。1． $1$ ：查找单词$1$并调入内存。2． $1 2$ ：查找单词 $2$ 并调入内存。3． $1 2$ ：在内存中找到单词 $1$ 。4． $1 2 5$ ：查找单词 $5$ 并调入内存。5． $2 5 4$ ：查找单词 $4$ 并调入内存替代单词 $1$ 。6． $2 5 4$ ：在内存中找到单词 $4$ 。7． $5 4 1$ ：查找单词1并调入内存替代单词 $2$ 。共计查了 55 次词典。 Solution没什么说的，就是队列模板题。 注意：千万不要把查找和找到搞混了！ Code12345678910111213141516171819202122232425262728293031323334353637383940#include&lt;iostream&gt;#include&lt;cstdio&gt;using namespace std;int n,m;int q[1005]=&#123;0&#125;;int chk=0;int head=1,tail=0;int main()&#123; cin&gt;&gt;m&gt;&gt;n; if(n==0||m==0)&#123; return 0; &#125; for(int i=1;i&lt;=n;i++)&#123; int x; cin&gt;&gt;x; bool flag=0; for(int j=head;j&lt;=tail;j++)&#123; if(q[j]==x)&#123; flag=1; break; &#125; &#125; if(flag)&#123; continue; &#125; if(tail-head+1==m)&#123; head++; tail++; chk++; q[tail]=x; &#125; else&#123; tail++; chk++; q[tail]=x; &#125; &#125; cout&lt;&lt;chk&lt;&lt;endl; return 0;&#125;]]></content>
       <tags>
         <tag>洛谷</tag>
         <tag>队列</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[-DP- [洛谷 P1091][NOIp 2004]合唱队形]]></title>
+    <url>%2Fblog%2F2018%2F08%2F21%2F18%2F</url>
+    <content type="text"><![CDATA[题目描述$N$ 位同学站成一排，音乐老师要请其中的( $N−K$ )位同学出列，使得剩下的 $K$ 位同学排成合唱队形。合唱队形是指这样的一种队形：设K位同学从左到右依次编号为 $1,2,…,K$ ，他们的身高分别为 $T1,T_2,…,T_K$ ， 则他们的身高满足 $T_1&lt;…T{i+1}&gt;…&gt;T_K(1 \le i \le K)$ 。你的任务是，已知所有$N$位同学的身高，计算最少需要几位同学出列，可以使得剩下的同学排成合唱队形。 输入格式共二行。第一行是一个整数 $N(2 \le N \le 100)$ ，表示同学的总数。第二行有 $n$ 个整数，用空格分隔，第 $i$ 个整数 $T_i(130 \le T_i \le 230)$ 是第 $i$ 位同学的身高（厘米）。 输出格式一个整数，最少需要几位同学出列。 输入样例8186 186 150 200 160 130 197 220 输出样例4 Solution思路：首先分析一下题目，题目的意思是找出几个人排成一个先单调递增后单调递减的队伍； 所以我们可以这样求：先枚举到第 $i$ 个人然后求出第 $i$ 个人前的最长上升子序列，再求出第 $i$ 个人后最长下降子序列。 注：需要特判一下当出现只单调递增或只单调递减的情况。 Code1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465#include &lt;iostream&gt;#include &lt;cstring&gt;using namespace std;int max(int a,int b) &#123; return (a&gt;=b)?a:b;&#125;int main() &#123; int a[105],ans=0; int n; cin&gt;&gt;n; for(int i=0; i&lt;n; i++) &#123; cin&gt;&gt;a[i]; &#125; bool flag=1; for(int i=0; i&lt;n; i++) &#123; if(a[i]&lt;=a[i-1]) &#123; flag=0; &#125; &#125; if(flag)&#123; cout&lt;&lt;'0'&lt;&lt;endl; return 0; &#125; for(int i=0;i&lt;n;i++)&#123; if(a[i]&gt;=a[i-1]) &#123; flag=0; &#125; &#125; if(flag)&#123; cout&lt;&lt;'0'&lt;&lt;endl; return 0; &#125; int b[105],c[105]; int maxn=0; for(int k=0; k&lt;n; k++) &#123; memset(b,0,sizeof(b)); memset(c,0,sizeof(c)); c[0]=1; b[0]=1; for (int i=1; i&lt;k; i++) &#123; b[i] = 1; for (int j=0; j&lt;i; j++) &#123; if (a[i]&gt;a[j]&amp;&amp;b[j]+1&gt;b[i]) b[i]=b[j]+1; &#125; &#125; for (int i=k+1; i&lt;n; i++) &#123; c[i] = 1; for (int j=k; j&lt;i; j++) &#123; if (a[i]&lt;a[j]&amp;&amp;c[j]+1&gt;c[i]) c[i]=c[j]+1; &#125; &#125; int maxb=0,maxc=0; for (int i=0; i&lt;k; i++) &#123; maxb=max(b[i],maxb); &#125; for (int i=k; i&lt;n; i++) &#123; maxc=max(c[i],maxc); &#125; maxn=max(maxn,maxb+maxc); &#125; cout&lt;&lt;n-maxn&lt;&lt;endl; return 0;&#125;]]></content>
+      <tags>
+        <tag>洛谷</tag>
+        <tag>DP</tag>
       </tags>
   </entry>
   <entry>
@@ -903,8 +903,8 @@
     <url>%2Fblog%2F2018%2F08%2F21%2F15%2F</url>
     <content type="text"><![CDATA[题目描述小渊和小轩是好朋友也是同班同学，他们在一起总有谈不完的话题。一次素质拓展活动中，班上同学安排做成一个 $m$ 行 $n$ 列的矩阵，而小渊和小轩被安排在矩阵对角线的两端，因此，他们就无法直接交谈了。幸运的是，他们可以通过传纸条来进行交流。纸条要经由许多同学传到对方手里，小渊坐在矩阵的左上角，坐标 $(1,1)$，小轩坐在矩阵的右下角，坐标 $(m,n)$ 。从小渊传到小轩的纸条只可以向下或者向右传递，从小轩传给小渊的纸条只可以向上或者向左传递。在活动进行中，小渊希望给小轩传递一张纸条，同时希望小轩给他回复。班里每个同学都可以帮他们传递，但只会帮他们一次，也就是说如果此人在小渊递给小轩纸条的时候帮忙，那么在小轩递给小渊的时候就不会再帮忙。反之亦然。 还有一件事情需要注意，全班每个同学愿意帮忙的好感度有高有低（注意：小渊和小轩的好心程度没有定义，输入时用 $0$ 表示），可以用一个 $0−100$ 的自然数来表示，数越大表示越好心。小渊和小轩希望尽可能找好心程度高的同学来帮忙传纸条，即找到来回两条传递路径，使得这 $2$ 条路径上同学的好心程度之和最大。现在，请你帮助小渊和小轩找到这样的 $2$ 条路径。 输入格式输入文件，第一行有 $2$ 个用空格隔开的整数 $m$ 和 $n$ ，表示班里有 $m$ 行 $n$ 列。 接下来的 $m$ 行是一个 $m \times n$ 的矩阵，矩阵中第 $i$ 行 $j$ 列的整数表示坐在第 $i$ 行 $j$ 列的学生的好心程度。每行的 $n$ 个整数之间用空格隔开。 输出格式输出文件共一行，包含一个整数，表示来回 $2$ 条路上参与传递纸条的学生的好心程度之和的最大值。 输入样例3 30 3 92 8 55 7 0 输出样例34 Solution首先让我们把问题转化一下，小渊给小轩传纸条，小轩也要给小渊传纸条，而且路径不能一样，其实就是相当于 小渊选择两个不同的路径，给小轩传两张纸条 。所以让我们来开一个四维数组f[i][j][p][q]，表示两张纸条传到$(i,j)$，$(p,q)$的最大总价值。一张处于$(i,j)$的纸条一定是从$(i-1,j)$或$(i,j-1)$传过来，因为要最大，所以$f[i][j]=max(f[i-1][j],f[i][j-1])$。于是我们可以写一个四重循环，时间复杂度为$O(n^4)$。但是有一个地方需要注意！当$i=p$，$j=q$时，一定要特殊处理一下，不然就会出错。 Code1234567891011121314151617181920212223242526272829#include&lt;iostream&gt;using namespace std;int max(int a,int b)&#123;\\手写max函数 return a&gt;b?a:b;&#125;int mp[50][50]=&#123;0&#125;;int f[52][52][52][52]=&#123;0&#125;;int main()&#123; int n,v,m; cin&gt;&gt;m&gt;&gt;n; for(int i=1;i&lt;=m;i++)&#123; for(int j=1;j&lt;=n;j++)&#123; cin&gt;&gt;v; mp[i][j]=v; &#125; &#125; for(int i=1;i&lt;=m;i++)&#123;//下面开始四重循环 for(int j=1;j&lt;=n;j++)&#123; for(int p=1;p&lt;=m;p++)&#123; for(int q=1;q&lt;=n;q++)&#123; f[i][j][p][q]=max(max(f[i-1][j][p-1][q],f[i][j-1][p-1][q]),max(f[i-1][j][p][q-1],f[i][j-1][p][q-1]))+mp[i][j]+mp[p][q]; if(i==p&amp;&amp;j==q) f[i][j][p][q]-=mp[p][q];//特殊处理，不然会多加 &#125; &#125; &#125; &#125; cout&lt;&lt;f[m][n][m][n]&lt;&lt;endl; return 0;//完美结束&#125; 顺便说一句，如果你这道题A了，那么P1004也就能A了，并且P1004(方格取数)的数据还比P1006弱。。。。。。]]></content>
       <tags>
-        <tag>DP</tag>
         <tag>洛谷</tag>
+        <tag>DP</tag>
         <tag>递推</tag>
       </tags>
   </entry>

@@ -6,7 +6,7 @@
   <link href="/blog/atom.xml" rel="self"/>
   
   <link href="https://stevebraveman.github.io/blog/"/>
-  <updated>2019-09-28T02:31:44.690Z</updated>
+  <updated>2019-09-28T02:39:27.670Z</updated>
   <id>https://stevebraveman.github.io/blog/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://stevebraveman.github.io/blog/2019/09/28/105/"/>
     <id>https://stevebraveman.github.io/blog/2019/09/28/105/</id>
     <published>2019-09-28T00:13:01.000Z</published>
-    <updated>2019-09-28T02:31:44.690Z</updated>
+    <updated>2019-09-28T02:39:27.670Z</updated>
     
-    <content type="html"><![CDATA[<p>你们可能不知道，只用暴力，打到前十，是什么概念。我们一般只会用三个字形容这种人：成功人。</p><p>我经常说一句话，当年陈刀仔他能用暴力打进集训队，我 $***​$，用暴力打到AK比赛，不是问题。</p><p>埋伏它一手，这个题不能正解。这个题不用正解，它死定了。</p><p>反手给一个搜索，闷声发大财。它评得有点慢，但是不用怕，它的数据卡不了我。</p><p>图论，最短路，很牛逼这个题。如果能把这个题数据范围缩小，这个题能直接枚举水过，可是缩不得。</p><p>评测机，评测机你连 $ n \le 5 $的数据都评不了吗？评测机你快点呐，评测机，别磨磨蹭蹭的。</p><p>dfs，交错了，应该手写栈的。</p><p>给评测机倒杯茶好吧，好吧，给评测机倒杯卡布奇诺。</p><p>给评测机倒一杯卡布奇诺，开始你的评测秀，A掉它。</p><p>$10\% \ \ \ \ n \le 100$，你能卡我？你能卡死我？你今天能用 $n \le 100$ 把 $***​$ 卡了，我当场，就把这个电脑屏幕吃掉！</p><p>Time Limit Exceed. Score: 5.</p>]]></content>
+    <content type="html"><![CDATA[<p>你们可能不知道，只用暴力，打到前十，是什么概念。我们一般只会用三个字形容这种人：成功人。</p><p>我经常说一句话，当年陈刀仔他能用暴力打进集训队，我 $***​$，用暴力打到AK比赛，不是问题。</p><p>埋伏它一手，这个题不能正解。这个题不用正解，它死定了。</p><p>反手给一个搜索，闷声发大财。它评得有点慢，但是不用怕，它的数据卡不了我。</p><p>图论，最短路，很牛逼这个题。如果能把这个题数据范围缩小，这个题能直接枚举水过，可是缩不得。</p><p>评测机，评测机你连 $ n \le 5 $的数据都评不了吗？评测机你快点呐，评测机，别磨磨蹭蹭的。</p><p>dfs，交错了，应该手写栈的。</p><p>给评测机倒杯茶好吧，好吧，给评测机倒杯卡布奇诺。</p><p>给评测机倒一杯卡布奇诺，开始你的评测秀，A掉它。</p><p>$10\% \ \ \ \ n \le 100$，你能卡我？你能卡死我？你今天能用 $n \le 100$ 把 $***​$ 卡了，我当场，就把这个电脑屏幕吃掉！</p><p>Time Limit Exceed. Score: 5.</p><p><img alt="" data-src="/blog/img/ma.jpg" class="lozad"></p>]]></content>
     
     <summary type="html">
     
@@ -168,9 +168,9 @@
     </summary>
     
     
-      <category term="DP" scheme="https://stevebraveman.github.io/blog/tags/DP/"/>
-    
       <category term="洛谷" scheme="https://stevebraveman.github.io/blog/tags/%E6%B4%9B%E8%B0%B7/"/>
+    
+      <category term="DP" scheme="https://stevebraveman.github.io/blog/tags/DP/"/>
     
   </entry>
   
@@ -247,9 +247,9 @@
     </summary>
     
     
-      <category term="LOJ" scheme="https://stevebraveman.github.io/blog/tags/LOJ/"/>
-    
       <category term="数论" scheme="https://stevebraveman.github.io/blog/tags/%E6%95%B0%E8%AE%BA/"/>
+    
+      <category term="LOJ" scheme="https://stevebraveman.github.io/blog/tags/LOJ/"/>
     
       <category term="杜教筛" scheme="https://stevebraveman.github.io/blog/tags/%E6%9D%9C%E6%95%99%E7%AD%9B/"/>
     
@@ -520,11 +520,11 @@
     </summary>
     
     
+      <category term="Codeforces" scheme="https://stevebraveman.github.io/blog/tags/Codeforces/"/>
+    
       <category term="图论" scheme="https://stevebraveman.github.io/blog/tags/%E5%9B%BE%E8%AE%BA/"/>
     
       <category term="拓扑排序" scheme="https://stevebraveman.github.io/blog/tags/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/"/>
-    
-      <category term="Codeforces" scheme="https://stevebraveman.github.io/blog/tags/Codeforces/"/>
     
   </entry>
   
