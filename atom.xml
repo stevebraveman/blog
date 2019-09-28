@@ -6,7 +6,7 @@
   <link href="/blog/atom.xml" rel="self"/>
   
   <link href="https://stevebraveman.github.io/blog/"/>
-  <updated>2019-09-26T10:25:45.086Z</updated>
+  <updated>2019-09-28T00:18:46.086Z</updated>
   <id>https://stevebraveman.github.io/blog/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>-其它-颓废- n &lt;= 100 你能卡我？</title>
+    <link href="https://stevebraveman.github.io/blog/2019/09/28/105/"/>
+    <id>https://stevebraveman.github.io/blog/2019/09/28/105/</id>
+    <published>2019-09-28T00:13:01.000Z</published>
+    <updated>2019-09-28T00:18:46.086Z</updated>
+    
+    <content type="html"><![CDATA[<p>你们可能不知道，只用暴力，打到前十，是什么概念。我们一般只会用三个字形容这种人：成功人。</p><p>我经常说一句话，当年陈刀仔他能用暴力打进集训队，我 $***​$，用暴力打到AK比赛，不是问题。</p><p>埋伏它一手，这个题不能正解。这个牌不用正解，它死定了。</p><p>反手给一个搜索，闷声发大财。它评得有点慢，但是不用怕，它的数据卡不了我。</p><p>最短路，图论，很牛逼这个题。如果能把这个题数据范围缩小，这个题能dfs水过，可是缩不得。</p><p>评测机，评测机你连 $ n \le 5 ​$的数据都评不了吗？评测机你快点呐，评测机，别磨磨蹭蹭的。</p><p>bfs，交错了，应该手写队列的。</p><p>给评测机倒杯茶好吧，给评测机，给你倒杯卡布奇诺。</p><p>给评测机倒一杯卡布奇诺，开始你的评测秀，A掉它。</p><p>$10\% \ \ \ \ n \le 100$，你能卡我？你能卡死我？你今天能用 $n \le 100$ 把 $***$ 卡了，我当场，就把这个电脑屏幕吃掉！</p><p>Time Limit Exceed. Score: 5.</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;你们可能不知道，只用暴力，打到前十，是什么概念。我们一般只会用三个字形容这种人：成功人。&lt;/p&gt;
+&lt;p&gt;我经常说一句话，当年陈刀仔他能用暴力打进集训队，我 $***​$，用暴力打到AK比赛，不是问题。&lt;/p&gt;
+&lt;p&gt;埋伏它一手，这个题不能正解。这个牌不用正解，它死定了。&lt;/
+      
+    
+    </summary>
+    
+    
+      <category term="其它" scheme="https://stevebraveman.github.io/blog/tags/%E5%85%B6%E5%AE%83/"/>
+    
+      <category term="颓废" scheme="https://stevebraveman.github.io/blog/tags/%E9%A2%93%E5%BA%9F/"/>
+    
+  </entry>
   
   <entry>
     <title>-图论-拓扑排序-二分- [洛谷 P4376][USACO18OPEN]Milking Order</title>
@@ -114,9 +141,9 @@
     </summary>
     
     
-      <category term="图论" scheme="https://stevebraveman.github.io/blog/tags/%E5%9B%BE%E8%AE%BA/"/>
-    
       <category term="LOJ" scheme="https://stevebraveman.github.io/blog/tags/LOJ/"/>
+    
+      <category term="图论" scheme="https://stevebraveman.github.io/blog/tags/%E5%9B%BE%E8%AE%BA/"/>
     
       <category term="拓扑排序" scheme="https://stevebraveman.github.io/blog/tags/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/"/>
     
@@ -141,9 +168,9 @@
     </summary>
     
     
-      <category term="DP" scheme="https://stevebraveman.github.io/blog/tags/DP/"/>
-    
       <category term="洛谷" scheme="https://stevebraveman.github.io/blog/tags/%E6%B4%9B%E8%B0%B7/"/>
+    
+      <category term="DP" scheme="https://stevebraveman.github.io/blog/tags/DP/"/>
     
   </entry>
   
@@ -193,9 +220,9 @@
     
       <category term="洛谷" scheme="https://stevebraveman.github.io/blog/tags/%E6%B4%9B%E8%B0%B7/"/>
     
-      <category term="网络流" scheme="https://stevebraveman.github.io/blog/tags/%E7%BD%91%E7%BB%9C%E6%B5%81/"/>
-    
       <category term="二分图" scheme="https://stevebraveman.github.io/blog/tags/%E4%BA%8C%E5%88%86%E5%9B%BE/"/>
+    
+      <category term="网络流" scheme="https://stevebraveman.github.io/blog/tags/%E7%BD%91%E7%BB%9C%E6%B5%81/"/>
     
       <category term="费用流" scheme="https://stevebraveman.github.io/blog/tags/%E8%B4%B9%E7%94%A8%E6%B5%81/"/>
     
@@ -498,28 +525,6 @@
       <category term="图论" scheme="https://stevebraveman.github.io/blog/tags/%E5%9B%BE%E8%AE%BA/"/>
     
       <category term="拓扑排序" scheme="https://stevebraveman.github.io/blog/tags/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>-网络流- 对于网络流24题的题解索引</title>
-    <link href="https://stevebraveman.github.io/blog/2019/05/24/85/"/>
-    <id>https://stevebraveman.github.io/blog/2019/05/24/85/</id>
-    <published>2019-05-24T11:25:01.000Z</published>
-    <updated>2019-08-17T08:13:49.241Z</updated>
-    
-    <content type="html"><![CDATA[<p>这是所有的网络流24题，其中标记了我完成的和我没有完成的题</p><a id="more"></a><p>（PS:点击题解中的对勾可以传送到相应题的题解）</p><div class="table-container"><table><thead><tr><th style="text-align:center">题目</th><th style="text-align:center">AC</th><th style="text-align:center">题解</th></tr></thead><tbody><tr><td style="text-align:center"><a href="https://www.luogu.org/problemnew/show/P2756" target="_blank" rel="noopener">飞行员配对方案问题</a></td><td style="text-align:center"><i class="fa fa-check" aria-hidden="true"></i></td><td style="text-align:center"><a href="/2019/01/22/59/"><i class="fa fa-check" aria-hidden="true"></i></a></td></tr><tr><td style="text-align:center"><a href="https://www.luogu.org/problemnew/show/P2763" target="_blank" rel="noopener">试题库问题</a></td><td style="text-align:center"><i class="fa fa-check" aria-hidden="true"></i></td><td style="text-align:center"></td></tr><tr><td style="text-align:center"><a href="https://www.luogu.org/problemnew/show/P2764" target="_blank" rel="noopener">最小路径覆盖问题</a></td><td style="text-align:center"><i class="fa fa-check" aria-hidden="true"></i></td><td style="text-align:center"><a href="/2019/01/22/60/"><i class="fa fa-check" aria-hidden="true"></i></a></td></tr><tr><td style="text-align:center"><a href="https://www.luogu.org/problemnew/show/P2754" target="_blank" rel="noopener">[CTSC1999]家园</a></td><td style="text-align:center"></td><td style="text-align:center"></td></tr><tr><td style="text-align:center"><a href="https://www.luogu.org/problemnew/show/P1251" target="_blank" rel="noopener">餐巾计划问题</a></td><td style="text-align:center"></td><td style="text-align:center"></td></tr><tr><td style="text-align:center"><a href="https://www.luogu.org/problemnew/show/P2761" target="_blank" rel="noopener">软件补丁问题</a></td><td style="text-align:center"></td><td style="text-align:center"></td></tr><tr><td style="text-align:center"><a href="https://www.luogu.org/problemnew/show/P2762" target="_blank" rel="noopener">太空飞行计划问题</a></td><td style="text-align:center"></td><td style="text-align:center"></td></tr><tr><td style="text-align:center"><a href="https://www.luogu.org/problemnew/show/P2765" target="_blank" rel="noopener">魔术球问题</a></td><td style="text-align:center"></td><td style="text-align:center"></td></tr><tr><td style="text-align:center"><a href="https://www.luogu.org/problemnew/show/P2766" target="_blank" rel="noopener">最长不下降子序列问题</a></td><td style="text-align:center"><i class="fa fa-check" aria-hidden="true"></i></td><td style="text-align:center"></td></tr><tr><td style="text-align:center"><a href="https://www.luogu.org/problemnew/show/P2770" target="_blank" rel="noopener">航空路线问题</a></td><td style="text-align:center"></td><td style="text-align:center"></td></tr><tr><td style="text-align:center"><a href="https://www.luogu.org/problemnew/show/P2774" target="_blank" rel="noopener">方格取数问题</a></td><td style="text-align:center"><i class="fa fa-check" aria-hidden="true"></i></td><td style="text-align:center"><a href="/2019/03/05/65/"><i class="fa fa-check" aria-hidden="true"></i></a></td></tr><tr><td style="text-align:center"><a href="https://www.luogu.org/problemnew/show/P2775" target="_blank" rel="noopener">机器人路径规划问题</a></td><td style="text-align:center"></td><td style="text-align:center"></td></tr><tr><td style="text-align:center"><a href="https://www.luogu.org/problemnew/show/P3254" target="_blank" rel="noopener">圆桌问题</a></td><td style="text-align:center"><i class="fa fa-check" aria-hidden="true"></i></td><td style="text-align:center"><a href="/2019/05/24/84/"><i class="fa fa-check" aria-hidden="true"></i></a></td></tr><tr><td style="text-align:center"><a href="https://www.luogu.org/problemnew/show/P3355" target="_blank" rel="noopener">骑士共存问题</a></td><td style="text-align:center"><i class="fa fa-check" aria-hidden="true"></i></td><td style="text-align:center"><a href="/2019/05/24/83/"><i class="fa fa-check" aria-hidden="true"></i></a></td></tr><tr><td style="text-align:center"><a href="https://www.luogu.org/problemnew/show/P3356" target="_blank" rel="noopener">火星探险问题 </a></td><td style="text-align:center"><i class="fa fa-check" aria-hidden="true"></i></td><td style="text-align:center"><a href="/2019/05/09/79/"><i class="fa fa-check" aria-hidden="true"></i></a></td></tr><tr><td style="text-align:center"><a href="https://www.luogu.org/problemnew/show/P3357" target="_blank" rel="noopener">最长k可重线段集问题</a></td><td style="text-align:center"></td><td style="text-align:center"></td></tr><tr><td style="text-align:center"><a href="https://www.luogu.org/problemnew/show/P3358" target="_blank" rel="noopener">最长k可重区间集问题</a></td><td style="text-align:center"></td><td style="text-align:center"></td></tr><tr><td style="text-align:center"><a href="https://www.luogu.org/problemnew/show/P4009" target="_blank" rel="noopener">汽车加油行驶问题</a></td><td style="text-align:center"></td><td style="text-align:center"></td></tr><tr><td style="text-align:center"><a href="https://www.luogu.org/problemnew/show/P4011" target="_blank" rel="noopener">孤岛营救问题</a></td><td style="text-align:center"></td><td style="text-align:center"></td></tr><tr><td style="text-align:center"><a href="https://www.luogu.org/problemnew/show/P4012" target="_blank" rel="noopener">深海机器人问题</a></td><td style="text-align:center"><i class="fa fa-check" aria-hidden="true"></i></td><td style="text-align:center"></td></tr><tr><td style="text-align:center"><a href="https://www.luogu.org/problemnew/show/P4013" target="_blank" rel="noopener">数字梯形问题</a></td><td style="text-align:center"></td><td style="text-align:center"></td></tr><tr><td style="text-align:center"><a href="https://www.luogu.org/problemnew/show/P4014" target="_blank" rel="noopener">分配问题</a></td><td style="text-align:center"><i class="fa fa-check" aria-hidden="true"></i></td><td style="text-align:center"></td></tr><tr><td style="text-align:center"><a href="https://www.luogu.org/problemnew/show/P4015" target="_blank" rel="noopener">运输问题</a></td><td style="text-align:center"><i class="fa fa-check" aria-hidden="true"></i></td><td style="text-align:center"></td></tr><tr><td style="text-align:center"><a href="https://www.luogu.org/problemnew/show/P4016" target="_blank" rel="noopener">负载平衡问题</a></td><td style="text-align:center"><i class="fa fa-check" aria-hidden="true"></i></td></tr></tbody></table></div>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;这是所有的网络流24题，其中标记了我完成的和我没有完成的题&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="网络流" scheme="https://stevebraveman.github.io/blog/tags/%E7%BD%91%E7%BB%9C%E6%B5%81/"/>
-    
-      <category term="网络流24题" scheme="https://stevebraveman.github.io/blog/tags/%E7%BD%91%E7%BB%9C%E6%B5%8124%E9%A2%98/"/>
     
   </entry>
   
