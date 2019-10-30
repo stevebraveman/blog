@@ -6,7 +6,7 @@
   <link href="/blog/atom.xml" rel="self"/>
   
   <link href="https://stevebraveman.github.io/blog/"/>
-  <updated>2019-10-10T09:33:14.379Z</updated>
+  <updated>2019-10-29T23:35:01.779Z</updated>
   <id>https://stevebraveman.github.io/blog/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>-DP-树形DP-换根DP- [洛谷 P3047][USACO12FEB]附近的牛Nearby Cows</title>
+    <link href="https://stevebraveman.github.io/blog/2019/10/30/108/"/>
+    <id>https://stevebraveman.github.io/blog/2019/10/30/108/</id>
+    <published>2019-10-29T23:19:59.000Z</published>
+    <updated>2019-10-29T23:35:01.779Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p><a href="https://www.luogu.org/problem/P3047" target="_blank" rel="noopener">Link</a></p><h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>关于这道题我们可以先DP出每个节点的子树内距离为K的节点的权值和，然后我们再进行换根DP，处理出树上距离每个节点为K的节点点权和，最后把小于等于K的答案都加起来就行了。</p><h3 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXN 1000010</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> v, nx;</span><br><span class="line">&#125;e[MAXN &lt;&lt; <span class="number">1</span>];</span><br><span class="line"><span class="keyword">int</span> head[MAXN], ecnt, n, m, x, y, k, dep[MAXN], dis[MAXN][<span class="number">22</span>]; </span><br><span class="line"><span class="keyword">int</span> dish[MAXN][<span class="number">22</span>], ans[MAXN][<span class="number">22</span>], tot[MAXN], disk[MAXN][<span class="number">22</span>], c[MAXN][<span class="number">22</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> f, <span class="keyword">int</span> t)</span> </span>&#123;</span><br><span class="line">    e[++ecnt] = (Edge) &#123;t, head[f]&#125;;</span><br><span class="line">    head[f] = ecnt;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs2</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> f, <span class="keyword">int</span> p)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = head[u]; i; i = e[i].nx) &#123;</span><br><span class="line">        <span class="keyword">int</span> to = e[i].v;</span><br><span class="line">        <span class="keyword">if</span> (to == f) <span class="keyword">continue</span>;</span><br><span class="line">        dis[u][p + <span class="number">1</span>] += dis[to][p];</span><br><span class="line">        dfs2(to, u, p);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs3</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> f, <span class="keyword">int</span> p)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = head[u]; i; i = e[i].nx) &#123;</span><br><span class="line">        <span class="keyword">int</span> to = e[i].v;</span><br><span class="line">        <span class="keyword">if</span> (to == f) <span class="keyword">continue</span>;</span><br><span class="line">        disk[to][p] = disk[u][p - <span class="number">1</span>] - dis[to][p - <span class="number">2</span>] + dis[to][p];</span><br><span class="line">        dfs3(to, u, p);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dp</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> f)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;n, &amp;k);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;x, &amp;y);</span><br><span class="line">        add(x, y);</span><br><span class="line">        add(y, x);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;dis[i][<span class="number">0</span>]);</span><br><span class="line">        disk[i][<span class="number">0</span>] = dis[i][<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k; i++) &#123;</span><br><span class="line">        dfs2(<span class="number">1</span>, <span class="number">1</span>, i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= k; i++) &#123;</span><br><span class="line">        disk[<span class="number">1</span>][i] = dis[<span class="number">1</span>][i];</span><br><span class="line">        dfs3(<span class="number">1</span>, <span class="number">1</span>, i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= k; j++) &#123;</span><br><span class="line">            tot[i] = tot[i] + disk[i][j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, tot[i]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://www.luogu.org/problem/P3047&quot; target=&quot;_blank&quot; 
+      
+    
+    </summary>
+    
+    
+      <category term="DP" scheme="https://stevebraveman.github.io/blog/tags/DP/"/>
+    
+      <category term="树形DP" scheme="https://stevebraveman.github.io/blog/tags/%E6%A0%91%E5%BD%A2DP/"/>
+    
+      <category term="换根DP" scheme="https://stevebraveman.github.io/blog/tags/%E6%8D%A2%E6%A0%B9DP/"/>
+    
+  </entry>
   
   <entry>
     <title>-图论-Kruskal重构树-最短路- [洛谷 P4768][NOI2018]归程</title>
@@ -115,11 +142,11 @@
     </summary>
     
     
-      <category term="洛谷" scheme="https://stevebraveman.github.io/blog/tags/%E6%B4%9B%E8%B0%B7/"/>
-    
       <category term="图论" scheme="https://stevebraveman.github.io/blog/tags/%E5%9B%BE%E8%AE%BA/"/>
     
       <category term="拓扑排序" scheme="https://stevebraveman.github.io/blog/tags/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/"/>
+    
+      <category term="洛谷" scheme="https://stevebraveman.github.io/blog/tags/%E6%B4%9B%E8%B0%B7/"/>
     
   </entry>
   
@@ -169,9 +196,9 @@
     
       <category term="数论" scheme="https://stevebraveman.github.io/blog/tags/%E6%95%B0%E8%AE%BA/"/>
     
-      <category term="博弈论" scheme="https://stevebraveman.github.io/blog/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/"/>
-    
       <category term="Codeforces" scheme="https://stevebraveman.github.io/blog/tags/Codeforces/"/>
+    
+      <category term="博弈论" scheme="https://stevebraveman.github.io/blog/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/"/>
     
   </entry>
   
@@ -507,29 +534,6 @@
       <category term="数论" scheme="https://stevebraveman.github.io/blog/tags/%E6%95%B0%E8%AE%BA/"/>
     
       <category term="逆元" scheme="https://stevebraveman.github.io/blog/tags/%E9%80%86%E5%85%83/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>-数论-欧拉定理- 有关无理数取余的一些想法</title>
-    <link href="https://stevebraveman.github.io/blog/2019/06/24/88/"/>
-    <id>https://stevebraveman.github.io/blog/2019/06/24/88/</id>
-    <published>2019-06-24T03:12:52.000Z</published>
-    <updated>2019-08-08T10:42:32.676Z</updated>
-    
-    <content type="html"><![CDATA[<p>我们知道针对有理数取余我们可以用费马小定理（欧拉定理）或者是扩展欧几里得求逆元得到。</p><p>但是现在，我们也可以根据（扩展）欧拉定理来进行无理数取余。</p><a id="more"></a><p>因为 $a^b \equiv a^{b \% \varphi(p)} \pmod p,\gcd(a,p)=1$。</p><p>所以可以把 $b$ 换为有理数，那么取余的对象就变成了根式。</p><p>但是这并不对所有的数据都适用，因为要满足 $\gcd(\varphi(p),b)=1$ ，其中 $b$ 为所要求逆元的数。 </p><p>尽管存在这个，但并没有说无理数取余是完全不可能，在特殊的数据下还是可以的，比如说 $\sqrt[3]{2} \equiv 3 \pmod 5$。</p><p><del>看，证明什么的都没有，多简洁</del></p><p>Update 2019.6.25</p><p>今天听说了一个叫二次剩余的东西，貌似我这个无理数取余没什么卵用了</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;我们知道针对有理数取余我们可以用费马小定理（欧拉定理）或者是扩展欧几里得求逆元得到。&lt;/p&gt;
-&lt;p&gt;但是现在，我们也可以根据（扩展）欧拉定理来进行无理数取余。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="数论" scheme="https://stevebraveman.github.io/blog/tags/%E6%95%B0%E8%AE%BA/"/>
-    
-      <category term="欧拉定理" scheme="https://stevebraveman.github.io/blog/tags/%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86/"/>
     
   </entry>
   
