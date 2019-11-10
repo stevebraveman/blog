@@ -172,9 +172,9 @@
     </summary>
     
     
-      <category term="Kruskal重构树" scheme="https://stevebraveman.github.io/blog/tags/Kruskal%E9%87%8D%E6%9E%84%E6%A0%91/"/>
-    
       <category term="学习笔记" scheme="https://stevebraveman.github.io/blog/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="Kruskal重构树" scheme="https://stevebraveman.github.io/blog/tags/Kruskal%E9%87%8D%E6%9E%84%E6%A0%91/"/>
     
   </entry>
   
@@ -303,11 +303,11 @@
     </summary>
     
     
-      <category term="LOJ" scheme="https://stevebraveman.github.io/blog/tags/LOJ/"/>
-    
       <category term="图论" scheme="https://stevebraveman.github.io/blog/tags/%E5%9B%BE%E8%AE%BA/"/>
     
       <category term="拓扑排序" scheme="https://stevebraveman.github.io/blog/tags/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/"/>
+    
+      <category term="LOJ" scheme="https://stevebraveman.github.io/blog/tags/LOJ/"/>
     
   </entry>
   
@@ -409,9 +409,9 @@
     </summary>
     
     
-      <category term="LOJ" scheme="https://stevebraveman.github.io/blog/tags/LOJ/"/>
-    
       <category term="数论" scheme="https://stevebraveman.github.io/blog/tags/%E6%95%B0%E8%AE%BA/"/>
+    
+      <category term="LOJ" scheme="https://stevebraveman.github.io/blog/tags/LOJ/"/>
     
       <category term="杜教筛" scheme="https://stevebraveman.github.io/blog/tags/%E6%9D%9C%E6%95%99%E7%AD%9B/"/>
     
