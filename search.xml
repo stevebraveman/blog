@@ -65,8 +65,8 @@
     <url>%2Fblog%2F2019%2F10%2F10%2F106%2F</url>
     <content type="text"><![CDATA[Kruskal重构树可以用来解决一些关于图上能到达的点的问题。 Kruskal重构树的建树过程和Kruskal最小生成树类似，先把边排序，然后再依次合并，但是在每一次合并的时候，都要新建节点，然后将节点连向这两个集合的根节点，点权就是图上连接这两个集合的边权。 所以我们可以看出，叶子节点一定是图上原有的节点。 Kruskal重构树还有个性质，假设你按照边权从小到大排序，那么树上任意两个叶节点的LCA的点权必是图上最小生成树中这两个节点之间的最大边权。 Kruskal重构树的建树过程代码： 123456789101112num = n; for (int i = 1; i &lt;= m; i++) &#123; x = find(_[i].u); y = find(_[i].v); if (x == y) continue; num++; fa[x] = fa[y] = num; fa[num] = num; h[num] = _[i].h; cnt++; if (cnt == n - 1) break;&#125; 需要注意一点的就是，Kruskal重构树不一定只能在一般图上做，如果有需要，也可以在树上做。]]></content>
       <tags>
-        <tag>学习笔记</tag>
         <tag>Kruskal重构树</tag>
+        <tag>学习笔记</tag>
       </tags>
   </entry>
   <entry>
